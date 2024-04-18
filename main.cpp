@@ -6,6 +6,8 @@ int main()
 	l.push_back(1);
 	l.push_back(2);
 	l.push_back(3);
+	l.push_back(4);
+	l.push_back(5);
 	l.print();
 	std::cout << " " << l.size() << std::endl;
 
@@ -20,6 +22,11 @@ int main()
 	l.pop_back();
 	l.print();
 	std::cout << " " << l.size() << std::endl;
+	
+	std::cout << l[0] << std::endl;
 
+	l.insert(3, 5);
+	l.print();
+	std::cout << " " << l.size() << std::endl;
 	return 0;
 }

@@ -19,11 +19,28 @@ namespace mylist
 			}
 		}
 
+		T& operator[](const size_t& index) 
+		{
+			if (index >= this->_size) {
+				throw std::out_of_range("Index out of range");
+			}
+
+			if (index < this->_size)
+			{
+				Knot* current = head;
+				for (size_t i = 0; i < index; ++i)
+				{
+					current = current->next;
+				}
+				return current->data;
+			}
+		}
+
 		size_t size() 
 		{
 			return _size;
 		}
-		void push_back(T data) 
+		void push_back(const T& data) 
 		{
 			if(this->head == nullptr) 
 			{
@@ -63,7 +80,7 @@ namespace mylist
 				this->_size--;
 			}
 		}
-		void push_front(T data)
+		void push_front(const T& data)
 		{
 			if(this->head == nullptr)
 			{
@@ -98,6 +115,38 @@ namespace mylist
 					current = current->next;
 					std::cout << current->data;
 				}
+			}
+		}
+		void insert(const size_t& index, const T& data)
+		{
+			if (index > this->_size) {
+				throw std::out_of_range("Index out of range");
+			}
+
+			if (index == this->_size)
+			{
+				this->push_back(data);
+				return;
+			}
+			else if (index == 0)
+			{
+				this->push_front(data);
+				return;
+			}
+			else
+			{
+				Knot* current = head;
+
+				for(size_t i = 0; i < index - 1; ++i)
+				{
+					current = current->next;
+				}
+
+				Knot* temp = new Knot(data);
+				temp->next = current->next;
+				current->next = temp;
+
+				this->_size++;
 			}
 		}
 
